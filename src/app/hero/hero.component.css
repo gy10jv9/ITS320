@@ -1,3 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hero-container {
+    @apply w-full h-full flex items-center justify-center
+}
 section.grid_top { /* container only */
     display: grid;
     grid-template-columns: 390px auto;

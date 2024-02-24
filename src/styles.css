@@ -7,8 +7,21 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    border: 1px solid black;
 }
 body {
-    padding: 18px 9.81%;
     padding-bottom: 0;
+}
+
+@font-face {
+    font-family: 'Montserrat Bold';
+    src: url('./assets/fonts/Montserrat-Bold.woff2');
+}
+@font-face {
+    font-family: 'Montserrat Regular';
+    src: url('./assets/fonts/Montserrat-Regular.woff2');
+}
+@font-face {
+    font-family: 'Montserrat Light';
+    src: url('./assets/fonts/montserrat-light.woff2');
 }
