@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToDoComponent } from './to-do/to-do.component';
 import { HeroComponent } from './hero/hero.component';
+import { PreviousWorksComponent } from './previous-works/previous-works.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HeroComponent } from './hero/hero.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HeroComponent
+    HeroComponent,
+    PreviousWorksComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
