@@ -2,10 +2,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-* {
-    @apply p-0 m-0
-}
-body {
-    @apply bg-blue-200
-}

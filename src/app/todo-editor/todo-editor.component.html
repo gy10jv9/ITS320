@@ -1,0 +1,6 @@
+<form [formGroup]="todo_form" (ngSubmit)="onSubmit()">
+    <label>Activity: </label>
+    <input type="text" formControlName="task">
+
+    <button type="submit" [disabled]="!todo_form.valid">Submit</button>
+</form>
