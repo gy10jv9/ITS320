@@ -4,6 +4,7 @@ section.grid_work { /* container only */
     grid-template-rows: 91px auto auto auto 50px;
     column-gap: 30px;
     row-gap: 30px;
+    padding: 0 9.81%;
 }
 section.grid_work .nav_filter { /* container only */
     grid-area: 1/2/2/3;
