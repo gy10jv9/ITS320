@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ToDoComponent } from './to-do/to-do.component';
 import { HeroComponent } from './hero/hero.component';
 import { PreviousWorksComponent } from './previous-works/previous-works.component';
+import { SkillsComponent } from './skills/skills.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PreviousWorksComponent } from './previous-works/previous-works.componen
     BrowserModule,
     AppRoutingModule,
     HeroComponent,
-    PreviousWorksComponent
+    PreviousWorksComponent,
+    SkillsComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

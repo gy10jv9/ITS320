@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HeroComponent } from './hero/hero.component';
 import { PreviousWorksComponent } from './previous-works/previous-works.component';
 import { ToDoComponent } from './to-do/to-do.component';
+import { SkillsComponent } from './skills/skills.component';
 
 const routes: Routes = [
     {
@@ -16,6 +17,10 @@ const routes: Routes = [
     {
         path: "previousWorks",
         component: PreviousWorksComponent
+    },
+    {
+        path: "skills",
+        component: SkillsComponent
     }
 ];
 
