@@ -1,4 +1,4 @@
-section.aboutMe_grid { /* container only */
+section.aboutMe_grid { /* container onlyy  */
     display: grid;
     grid-template-columns: 600px auto;
     grid-template-rows: 37px 59px 111px 250px 111px auto;
