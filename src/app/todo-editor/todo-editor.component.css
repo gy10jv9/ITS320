@@ -5,7 +5,5 @@ label { font-weight: bold; }
     border-color: var(--bs-btn-hover-border-color);
 }
 .submit-btn:hover {
-    color: var(--bs-btn-hover-bg);
-    background-color: var(--bs-btn-hover-color);
-    border-color: var(--bs-btn-hover-border-color);
+    @apply bg-blue-900
 }

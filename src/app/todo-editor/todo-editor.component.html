@@ -1,13 +1,19 @@
 <!-- fullscreen container -->
-<div class="h-screen w-screen flex flex-column items-center justify-center">
-    <form class="bg-white w-fit p-[32px] flex flex-column items-center justify-center rounded-[16px] shadow-md">
+<div class="h-screen w-screen flex flex-row gap-x-[16px] items-center justify-center">
+    <!-- ang form mismo -->
+    <form class="bg-white w-fit p-[32px] flex flex-column items-center justify-center rounded-[16px] shadow-sm" (ngsubmit)="onSubmit">
         <div class="form-group flex flex-column items-center justify-center">
             <label> ToDo List </label>
-            <input type="text" class="form-control text-center my-[16px]" placeholder="Enter Task"/>
+            <input type="text" class="form-control text-center my-[16px]" placeholder="Enter Task" [formControl]="task"/>
         </div>
 
         <button type="submit" class="submit-btn btn btn-primary">Submit</button>
     </form>
+
+    <!-- ang todo list -->
+    <div class="bg-white w-[280px] h-[196px] rounded-[16px] shadow-sm p-[32px]">
+        <ul *ngIf="task_list && task_list.length > 0">
+            <li *ngFor="let todo of task_list"> {{ todo }} </li>
+        </ul>
+    </div>
 </div>
-
-
