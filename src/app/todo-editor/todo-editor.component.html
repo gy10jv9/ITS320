@@ -11,7 +11,7 @@
         <button class="submit-btn btn btn-primary" (click)="onSubmit()" [disabled]="task.invalid">Submit</button>
     </div>
 
-    <!-- ang todo list -->
+    <!-- todo list -->
     <div class="bg-white w-[280px] h-[220px] rounded-[16px] shadow-sm p-[32px]">
         <ul *ngIf="task_list && task_list.length > 0">
             <li *ngFor="let todo of task_list"> {{ todo }} </li>
