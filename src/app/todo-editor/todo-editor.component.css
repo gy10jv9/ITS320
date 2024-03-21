@@ -3,11 +3,19 @@ label { font-weight: bold; }
     color: var(--bs-btn-hover-color);
     background-color: var(--bs-btn-hover-bg);
     border-color: var(--bs-btn-hover-border-color);
+    @apply h-[2.5rem]
 }
 .submit-btn:hover {
     @apply bg-blue-900
 }
 
-.container-todo { @apply w-[320px] h-[88%] rounded-md bg-white }
+h1 { @apply uppercase font-semibold text-center }
 .completed { @apply line-through }
-li { @apply text-red-800 }
+
+.icon { @apply w-5 h-5 cursor-pointer}
+.edit { background: url(../../assets/images/icon-edit.png) center center/cover; }
+.edit:hover { background: url(../../assets/images/icon-edit2.png) center center/cover }
+.delete { background: url(../../assets/images/icon-delete3.png) center center/cover; }
+.delete:hover { background: url(../../assets/images/icon-delete.png) center center/cover }
+.save { background: url(../../assets/images/icon-save.png) center center/cover; }
+.save:hover { background: url(../../assets/images/icon-save2.png) center center/cover }

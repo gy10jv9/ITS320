@@ -1,26 +1,35 @@
 <!-- fullscreen container -->
 <div class="h-screen w-screen flex flex-row gap-x-[8px] items-center justify-center">
-    <div class="container-todo">
-        <p> All Tasks </p>
-        <input type="text" class="form-control text-center my-[16px]" placeholder="Enter Task" [formControl]="task"/>
-        <button class="submit-btn btn btn-primary" (click)="onSubmit()" [disabled]="task.invalid">Submit</button>
+    <div class="w-[380px] h-[88%] rounded-xl bg-slate-100 shadow-xl py-8 px-4 flex flex-col items-center relative">
+        <h1> All Tasks </h1>
 
         <!-- ----- LIST OF THE TASKS ----- -->
-        <ul *ngIf="task_list && task_list.length > 0">
-            <li *ngFor="let todo of task_list; let i = index" class="individualList">
-                <div *ngIf="!todo.isEditing; else editTemplate">
-                    <p (click)="crossOut(i)" [class.completed]="todo.isDone"> {{ todo.taskName }} </p> 
-                    <button (click)="editTask(i)"> edit </button>
-                    <button (click)="deleteTask(i)"> delete </button>
+        <ul *ngIf="task_list && task_list.length > 0" class="w-full">
+            <li *ngFor="let todo of task_list; let i = index" class="w-full rounded-lg h-10 bg-white shadow-sm">
+                <div *ngIf="!todo.isEditing; else editTemplate" class="flex flex-row justify-between items-center h-full px-4 py-2">
+                    <p (click)="crossOut(i)" [class.completed]="todo.isDone" class="grow cursor-pointer"> {{ todo.taskName }} </p>
+
+                    <!-- button container -->
+                    <div class="flex flex-row">
+                        <div (click)="editTask(i)" class="icon edit"></div>
+                        <div (click)="deleteTask(i)" class="icon delete"></div>
+                    </div>
                 </div>
                 
                 <!-- wala pa na render nga template -->
-                <ng-template #editTemplate> 
-                    <input type="text" [(ngModel)]="todo.taskName">
-                    <button (click)="saveTask(i)">Save</button>
+                <ng-template #editTemplate >
+                    <div class="flex flex-row justify-between items-center h-full px-4 py-2">
+                        <input type="text" [(ngModel)]="todo.taskName">
+                        <div (click)="saveTask(i)" class="icon save"></div>
+                    </div>
                 </ng-template>
             </li>
         </ul>
+
+        <div class="flex flex-row items-center gap-x-2 absolute bottom-4">
+            <input type="text" class="form-control text-center my-[16px]" placeholder="Enter Task" [formControl]="task"/>
+            <button class="submit-btn btn btn-primary" (click)="onSubmit()" [disabled]="task.invalid">Submit</button>    
+        </div>
     </div>
 </div>
 
