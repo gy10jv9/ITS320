@@ -1,6 +1,31 @@
 <!-- fullscreen container -->
 <div class="h-screen w-screen flex flex-row gap-x-[8px] items-center justify-center">
-    <!-- ang form mismo -->
+    <div class="container-todo">
+        <p> All Tasks </p>
+        <input type="text" class="form-control text-center my-[16px]" placeholder="Enter Task" [formControl]="task"/>
+        <button class="submit-btn btn btn-primary" (click)="onSubmit()" [disabled]="task.invalid">Submit</button>
+
+        <!-- ----- LIST OF THE TASKS ----- -->
+        <ul *ngIf="task_list && task_list.length > 0">
+            <li *ngFor="let todo of task_list; let i = index" class="individualList">
+                <div *ngIf="!todo.isEditing; else editTemplate">
+                    <p (click)="crossOut(i)" [class.completed]="todo.isDone"> {{ todo.taskName }} </p> 
+                    <button (click)="editTask(i)"> edit </button>
+                    <button (click)="deleteTask(i)"> delete </button>
+                </div>
+                
+                <!-- wala pa na render nga template -->
+                <ng-template #editTemplate> 
+                    <input type="text" [(ngModel)]="todo.taskName">
+                    <button (click)="saveTask(i)">Save</button>
+                </ng-template>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!--
+<div class="h-screen w-screen flex flex-row gap-x-[8px] items-center justify-center">
     <div class="bg-white w-fit p-[32px] flex flex-column items-center justify-center rounded-[16px] shadow-sm">
         <form class="form-group flex flex-column items-center justify-center">
             <label> ToDo List </label>
@@ -11,10 +36,10 @@
         <button class="submit-btn btn btn-primary" (click)="onSubmit()" [disabled]="task.invalid">Submit</button>
     </div>
 
-    <!-- todo list -->
     <div class="bg-white w-[280px] h-[220px] rounded-[16px] shadow-sm p-[32px]">
         <ul *ngIf="task_list && task_list.length > 0">
             <li *ngFor="let todo of task_list"> {{ todo }} </li>
         </ul>
     </div>
 </div>
+-->

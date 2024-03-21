@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
+interface type_task { /* nag himo ko dw custom nga type */
+	taskName: string,
+	isDone: boolean,
+	isEditing: boolean
+}
+
 @Component({
 	selector: 'app-todo-editor',
 	templateUrl: './todo-editor.component.html',
@@ -9,15 +15,21 @@ import { FormControl, Validators } from '@angular/forms';
 
 export class TodoEditorComponent {
 	task = new FormControl('', Validators.required)
-	task_list: string[] = []
+	task_list: type_task[] = [
+		{taskName: "task1", isDone: false, isEditing: false},
+		{taskName: "task2", isDone: false, isEditing: false}
+	]
 
 	onSubmit = () => {
-		console.log("submit button is working")
+		let newTask: type_task = {
+			taskName: this.task.value?.toString() || '', /* convert toString para inde mag null or mag error */
+			isDone: false,
+			isEditing: false
+		}
 
-		this.task_list = [...this.task_list, this.task.value!]
+		this.task_list = [...this.task_list, newTask];
 		this.task.reset()
 	}
-
 
 	/* pabalo sng status kng valid or invalid */
 	validation = "invalid!"
@@ -25,6 +37,20 @@ export class TodoEditorComponent {
 		this.task.statusChanges.subscribe((status) => {
 			this.validation = status === "VALID" ? "ok" : "invalid!"
 		})
+	}
+
+	/* ----- CRUD function ----- */
+	crossOut = (index: number) => {
+		this.task_list[index].isDone = !this.task_list[index].isDone /* gamit "!" para suliun ang boolean value sa isDone */
+	}
+	deleteTask = (index: number) => {
+		this.task_list.splice(index, 1)
+	}
+	editTask(index: number) {
+		this.task_list[index].isEditing = true;
+	}
+	saveTask(index: number) {
+		this.task_list[index].isEditing = false;
 	}
 }
 

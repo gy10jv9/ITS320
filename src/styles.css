@@ -6,4 +6,6 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
 * { @apply box-border }
-body { @apply bg-slate-200 }
+body { 
+    @apply bg-slate-200
+}

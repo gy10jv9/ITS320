@@ -7,3 +7,7 @@ label { font-weight: bold; }
 .submit-btn:hover {
     @apply bg-blue-900
 }
+
+.container-todo { @apply w-[320px] h-[88%] rounded-md bg-white }
+.completed { @apply line-through }
+li { @apply text-red-800 }
