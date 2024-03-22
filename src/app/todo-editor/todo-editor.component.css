@@ -11,7 +11,10 @@ label { font-weight: bold; }
 
 h1 { @apply uppercase font-semibold text-center }
 .completed { @apply line-through }
-
+ul { 
+    scrollbar-width: none;
+    @apply w-full gap-1 flex flex-col mt-4 grow overflow-y-scroll 
+}
 .icon { @apply w-5 h-5 cursor-pointer}
 .edit { background: url(../../assets/images/icon-edit.png) center center/cover; }
 .edit:hover { background: url(../../assets/images/icon-edit2.png) center center/cover }
