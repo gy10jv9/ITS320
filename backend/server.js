@@ -1,4 +1,7 @@
 const express = require('express'); 
+const { PrismaClient } = require('@prisma/client');
+
+const prisma = new PrismaClient();
 const app = express(); 
   
 // handling CORS 
@@ -9,7 +12,7 @@ app.use((req, res, next) => {
                "Origin, X-Requested-With, Content-Type, Accept"); 
     next(); 
 }); 
-  
+
 // route for handling requests from the Angular client 
 app.get('/api/message', (req, res) => { 
     res.json({ message:  
