@@ -3,6 +3,10 @@ const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 const app = express(); 
+const port = 3000
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
   
 // handling CORS 
 app.use((req, res, next) => { 
@@ -19,6 +23,6 @@ app.get('/api/message', (req, res) => {
         'Hello GEEKS FOR GEEKS Folks from the Express server!' }); 
 }); 
   
-app.listen(3000, () => { 
-    console.log('Server listening on port 3000'); 
+app.listen(port, () => { 
+    console.log(`Server listening on port ${port}`); 
 });
