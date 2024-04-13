@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { ApiService } from './api.service';
 
 interface type_task { /* nag himo ko dw custom nga type */
 	taskName: string,
 	isDone: boolean,
 	isEditing: boolean
 }
+interface type_task2 { title: string }
 
 @Component({
 	selector: 'app-todo-editor',
@@ -14,6 +16,16 @@ interface type_task { /* nag himo ko dw custom nga type */
 })
 
 export class TodoEditorComponent {
+
+	title = 'frontEnd'; 
+    message: any; 
+    constructor(private apiService: ApiService) { }; 
+    ngOnInit() { 
+        this.apiService.getMessage().subscribe(data => { 
+            this.message = data; 
+        }); 
+    }
+
 	task = new FormControl('', Validators.required)
 	task_list: type_task[] = [
 		{taskName: "task1", isDone: false, isEditing: false},
@@ -31,13 +43,25 @@ export class TodoEditorComponent {
 		this.task.reset()
 	}
 
-	/* pabalo sng status kng valid or invalid */
-	validation = "invalid!"
-	ngOnInit(): void {
-		this.task.statusChanges.subscribe((status) => {
-			this.validation = status === "VALID" ? "ok" : "invalid!"
+	onSubmit2 = () => {
+		const data: any = {
+			"title": this.task.value?.toString() || ''
+		}
+		console.log(data)
+		this.apiService.postMessage(data).subscribe((result) => {
+			console.warn(result)
 		})
+		this.task.reset()
+		window.location.reload()
 	}
+
+	/* pabalo sng status kng valid or invalid */
+	// validation = "invalid!"
+	// ngOnInit(): void {
+	// 	this.task.statusChanges.subscribe((status) => {
+	// 		this.validation = status === "VALID" ? "ok" : "invalid!"
+	// 	})
+	// }
 
 	/* ----- CRUD function ----- */
 	crossOut = (index: number) => {

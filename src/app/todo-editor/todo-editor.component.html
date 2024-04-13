@@ -26,9 +26,13 @@
             </li>
         </ul>
 
+        <ul>
+            <li *ngFor="let i of message" class="w-full rounded-lg h-10 bg-white shadow-sm"> {{ i.title |json }} </li>
+        </ul>
+
         <div class="flex flex-row items-center gap-x-2 absolute bottom-4">
             <input type="text" class="form-control my-[16px]" placeholder="Enter Task" [formControl]="task"/>
-            <button class="submit-btn btn btn-primary" (click)="onSubmit()" [disabled]="task.invalid">Submit</button>    
+            <button class="submit-btn btn btn-primary" (click)="onSubmit2()" [disabled]="task.invalid">Submit</button>    
         </div>
     </div>
 </div>

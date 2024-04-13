@@ -1,6 +1,6 @@
 <app-todo-editor/>
-<p *ngIf="message"> 
-    {{ message.message }} 
-</p>
+    <ul>
+        <li *ngFor="let i of message">{{ i.title |json }}</li>
+    </ul>
 
 <router-outlet></router-outlet>
