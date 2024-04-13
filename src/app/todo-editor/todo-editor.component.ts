@@ -51,6 +51,8 @@ export class TodoEditorComponent {
 		this.apiService.postMessage(data).subscribe((result) => {
 			console.warn(result)
 		})
+		this.task.reset()
+		window.location.reload()
 	}
 
 	/* pabalo sng status kng valid or invalid */
