@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { ApiService } from './api.service';
 
 interface type_task { /* nag himo ko dw custom nga type */
 	taskName: string,
@@ -14,6 +15,16 @@ interface type_task { /* nag himo ko dw custom nga type */
 })
 
 export class TodoEditorComponent {
+
+	title = 'frontEnd'; 
+    message: any; 
+    constructor(private apiService: ApiService) { }; 
+    ngOnInit() { 
+        this.apiService.getMessage().subscribe(data => { 
+            this.message = data; 
+        }); 
+    }
+
 	task = new FormControl('', Validators.required)
 	task_list: type_task[] = [
 		{taskName: "task1", isDone: false, isEditing: false},
@@ -32,12 +43,12 @@ export class TodoEditorComponent {
 	}
 
 	/* pabalo sng status kng valid or invalid */
-	validation = "invalid!"
-	ngOnInit(): void {
-		this.task.statusChanges.subscribe((status) => {
-			this.validation = status === "VALID" ? "ok" : "invalid!"
-		})
-	}
+	// validation = "invalid!"
+	// ngOnInit(): void {
+	// 	this.task.statusChanges.subscribe((status) => {
+	// 		this.validation = status === "VALID" ? "ok" : "invalid!"
+	// 	})
+	// }
 
 	/* ----- CRUD function ----- */
 	crossOut = (index: number) => {
