@@ -8,6 +8,12 @@ export class ApiService {
     constructor(private http: HttpClient) { } 
     getMessage() { 
         return this.http.get( 
-            'http://localhost:3000/tasks'); 
+            'http://localhost:3000/tasks'
+        ); 
+    }
+    postMessage(data: any) { 
+        return this.http.post( 
+            'http://localhost:3000/tasks', data
+        ); 
     }
 }

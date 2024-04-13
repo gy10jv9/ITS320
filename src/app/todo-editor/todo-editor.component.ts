@@ -7,6 +7,7 @@ interface type_task { /* nag himo ko dw custom nga type */
 	isDone: boolean,
 	isEditing: boolean
 }
+interface type_task2 { title: string }
 
 @Component({
 	selector: 'app-todo-editor',
@@ -40,6 +41,16 @@ export class TodoEditorComponent {
 
 		this.task_list = [...this.task_list, newTask];
 		this.task.reset()
+	}
+
+	onSubmit2 = () => {
+		const data: any = {
+			"title": this.task.value?.toString() || ''
+		}
+		console.log(data)
+		this.apiService.postMessage(data).subscribe((result) => {
+			console.warn(result)
+		})
 	}
 
 	/* pabalo sng status kng valid or invalid */
