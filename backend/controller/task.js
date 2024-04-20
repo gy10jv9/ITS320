@@ -9,6 +9,7 @@ const createTask = async (payload) => {
     })
     return newtask
 }
+
 const getallTasks = async () => {
     const gettasks = await prisma.task.findMany()
     return gettasks

@@ -16,12 +16,11 @@ interface type_task2 { title: string }
 })
 
 export class TodoEditorComponent {
-
 	title = 'frontEnd'; 
     message: any; 
     constructor(private apiService: ApiService) { }; 
-    ngOnInit() { 
-        this.apiService.getMessage().subscribe(data => { 
+    async ngOnInit() { 
+        this.apiService.get("tasks").subscribe(data => { 
             this.message = data; 
         }); 
     }
@@ -48,10 +47,10 @@ export class TodoEditorComponent {
 			"title": this.task.value?.toString() || ''
 		}
 		console.log(data)
-		this.apiService.postMessage(data).subscribe((result) => {
-			console.warn(result)
+		this.apiService.postMessage(data).subscribe((resp => {
+			console.warn(resp)
 		})
-		window.location.reload()
+		)
 	}
 
 	/* pabalo sng status kng valid or invalid */
