@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ApiService } from './services/api.service';
 
-interface type_task { /* nag himo ko dw custom nga type */
-	taskName: string,
-	isDone: boolean,
-	isEditing: boolean
+interface type_todoitem {
+	description: string;
 }
-interface type_task2 { title: string }
+interface type_todolist {
+	name: string;
+	list: type_todoitem[];
+}
 
 @Component({
 	selector: 'app-todo-editor',
@@ -15,65 +16,37 @@ interface type_task2 { title: string }
 	styleUrls: ['./todo-editor.component.css']
 })
 
-export class TodoEditorComponent {
 
-	title = 'frontEnd'; 
-    message: any; 
-    constructor(private apiService: ApiService) { }; 
+export class TodoEditorComponent {
+    constructor(private apiService: ApiService) {};
+    
+	message: any;
     ngOnInit() { 
-        this.apiService.getMessage().subscribe(data => { 
-            this.message = data; 
+        this.apiService.getMessage().subscribe((data) => { 
+            this.message = data;
         }); 
     }
 
+	ownerName = new FormControl
+	newtask = new FormControl('', Validators.required)
+	temp_todolist: type_todolist = { // initiate ya nga wala anay unod
+		name: "",
+		list: []
+	}
+	onsave = () => {
+		this.temp_todolist.name = this.ownerName.value?.toString() || "no name"
+		this.temp_todolist.list.push({ description: this.newtask.value?.toString() || " " })
+		console.log(this.temp_todolist)
+	}
+
 	task = new FormControl('', Validators.required)
-	task_list: type_task[] = [
-		{taskName: "task1", isDone: false, isEditing: false},
-		{taskName: "task2", isDone: false, isEditing: false}
-	]
-
 	onSubmit = () => {
-		let newTask: type_task = {
-			taskName: this.task.value?.toString() || '', /* convert toString para inde mag null or mag error */
-			isDone: false,
-			isEditing: false
-		}
-
-		this.task_list = [...this.task_list, newTask];
-		this.task.reset()
-	}
-
-	onSubmit2 = () => {
 		const data: any = {
-			"title": this.task.value?.toString() || ''
+			description: this.task.value?.toString() || ''
 		}
-		console.log(data)
-		this.apiService.postMessage(data).subscribe((result) => {
-			console.warn(result)
+		this.apiService.postMessage(data).subscribe(() => {
+			this.message.push({ description: data.description })
+			this.task.reset()
 		})
-		window.location.reload()
-	}
-
-	/* pabalo sng status kng valid or invalid */
-	// validation = "invalid!"
-	// ngOnInit(): void {
-	// 	this.task.statusChanges.subscribe((status) => {
-	// 		this.validation = status === "VALID" ? "ok" : "invalid!"
-	// 	})
-	// }
-
-	/* ----- CRUD function ----- */
-	crossOut = (index: number) => {
-		this.task_list[index].isDone = !this.task_list[index].isDone /* gamit "!" para suliun ang boolean value sa isDone */
-	}
-	deleteTask = (index: number) => {
-		this.task_list.splice(index, 1)
-	}
-	editTask(index: number) {
-		this.task_list[index].isEditing = true;
-	}
-	saveTask(index: number) {
-		this.task_list[index].isEditing = false;
 	}
 }
-

@@ -1,58 +1,25 @@
 <!-- fullscreen container -->
 <div class="h-screen w-screen flex flex-row gap-x-[8px] items-center justify-center">
+    <!--/////[ TEMPORARY TASKS ]/////-->
+    <div class="w-[380px] h-[88%] rounded-xl bg-slate-100 shadow-xl py-8 px-4 flex flex-col items-center relative pb-24">
+        <input type="text" class="form-control my-[16px]" placeholder="Enter Owner Name" [formControl]="ownerName"/>
+        <ul>
+            <li *ngFor="let i of message" class="w-full rounded-lg h-10 bg-white shadow-sm"> {{ i.title |json }} </li>
+            <div class="flex flex-row items-center gap-x-2">
+                <input type="text" class="form-control my-[16px]" placeholder="Enter Task" [formControl]="newtask"/>
+                <button class="submit-btn btn btn-primary" (click)="onsave()"> Add </button>
+            </div>   
+        </ul>
+        <div class="flex flex-row items-center absolute bottom-4">
+            <button class="submit-btn btn btn-primary" (click)="onSubmit()" [disabled]="task.invalid">Save Tasks</button>
+        </div>    
+    </div>
+
+    <!--/////[ TASKS HALIN DATABASE ]/////-->
     <div class="w-[380px] h-[88%] rounded-xl bg-slate-100 shadow-xl py-8 px-4 flex flex-col items-center relative pb-24">
         <h1> All Tasks </h1>
-
-        <!-- ----- LIST OF THE TASKS ----- -->
-        <ul *ngIf="task_list && task_list.length > 0" class="">
-            <li *ngFor="let todo of task_list; let i = index" class="w-full rounded-lg h-10 bg-white shadow-sm">
-                <div *ngIf="!todo.isEditing; else editTemplate" class="flex flex-row justify-between items-center h-full px-4 py-2">
-                    <p (click)="crossOut(i)" [class.completed]="todo.isDone" class="grow cursor-pointer"> {{ todo.taskName }} </p>
-
-                    <!-- button container -->
-                    <div class="flex flex-row gap-1">
-                        <div (click)="editTask(i)" class="icon edit"></div>
-                        <div (click)="deleteTask(i)" class="icon delete"></div>
-                    </div>
-                </div>
-                
-                <!-- wala pa na render nga template -->
-                <ng-template #editTemplate >
-                    <div class="flex flex-row justify-between items-center h-full px-4 py-2">
-                        <input type="text" [(ngModel)]="todo.taskName" class="bg-slate-100 pl-4 rounded-sm">
-                        <div (click)="saveTask(i)" class="icon save"></div>
-                    </div>
-                </ng-template>
-            </li>
-        </ul>
-
         <ul>
             <li *ngFor="let i of message" class="w-full rounded-lg h-10 bg-white shadow-sm"> {{ i.title |json }} </li>
         </ul>
-
-        <div class="flex flex-row items-center gap-x-2 absolute bottom-4">
-            <input type="text" class="form-control my-[16px]" placeholder="Enter Task" [formControl]="task"/>
-            <button class="submit-btn btn btn-primary" (click)="onSubmit2()" [disabled]="task.invalid">Submit</button>    
-        </div>
     </div>
 </div>
-
-<!--
-<div class="h-screen w-screen flex flex-row gap-x-[8px] items-center justify-center">
-    <div class="bg-white w-fit p-[32px] flex flex-column items-center justify-center rounded-[16px] shadow-sm">
-        <form class="form-group flex flex-column items-center justify-center">
-            <label> ToDo List </label>
-            <input type="text" class="form-control text-center my-[16px]" placeholder="Enter Task" [formControl]="task"/>
-        </form>
-        <p> {{ validation }} </p>
-
-        <button class="submit-btn btn btn-primary" (click)="onSubmit()" [disabled]="task.invalid">Submit</button>
-    </div>
-
-    <div class="bg-white w-[280px] h-[220px] rounded-[16px] shadow-sm p-[32px]">
-        <ul *ngIf="task_list && task_list.length > 0">
-            <li *ngFor="let todo of task_list"> {{ todo }} </li>
-        </ul>
-    </div>
-</div>
--->

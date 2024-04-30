@@ -14,6 +14,13 @@ generator client {
 }
 
 model Task {
-    id		String		@id @default(auto()) @map("_id") @db.ObjectId
-    title	String		
+    id				String		@id @default(auto()) @map("_id") @db.ObjectId
+    description		String		
 }
+
+model Owner {
+	id		String		@id @default(auto()) @map("_id") @db.ObjectId
+	name	String
+}
+
+// "prisma db push" command to create new indexes and regenerate Prisma Client
