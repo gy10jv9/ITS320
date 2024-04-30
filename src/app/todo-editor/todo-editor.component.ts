@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ApiService } from './api.service';
+import { ApiService } from './services/api.service';
 
 interface type_task { /* nag himo ko dw custom nga type */
 	taskName: string,

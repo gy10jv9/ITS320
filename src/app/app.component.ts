@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ApiService } from './api.service';
 
 @Component({
     selector: 'app-root',
@@ -7,12 +6,5 @@ import { ApiService } from './api.service';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    title = 'frontEnd'; 
-    message: any; 
-    constructor(private apiService: ApiService) { }; 
-    ngOnInit() { 
-        this.apiService.getMessage().subscribe(data => { 
-            this.message = data; 
-        }); 
-    }
+
 }
