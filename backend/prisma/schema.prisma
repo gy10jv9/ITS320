@@ -16,6 +16,7 @@ generator client {
 model Task {
     id				String		@id @default(auto()) @map("_id") @db.ObjectId
     description		String		
+	owener_id		String
 }
 
 model Owner {
