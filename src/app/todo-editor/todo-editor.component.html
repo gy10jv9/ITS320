@@ -4,7 +4,7 @@
     <div class="w-[380px] h-[88%] rounded-xl bg-slate-100 shadow-xl py-8 px-4 flex flex-col items-center relative pb-24">
         <input type="text" class="form-control my-[16px]" placeholder="Enter Owner Name" [formControl]="ownerName"/>
         <ul>
-            <li *ngFor="let i of message" class="w-full rounded-lg h-10 bg-white shadow-sm"> {{ i.title |json }} </li>
+            <li *ngFor="let i of temp_todolist.list" class="w-full rounded-lg h-10 bg-white shadow-sm"> {{ i.description|json }} </li>
             <div class="flex flex-row items-center gap-x-2">
                 <input type="text" class="form-control my-[16px]" placeholder="Enter Task" [formControl]="newtask"/>
                 <button class="submit-btn btn btn-primary" (click)="onsave()"> Add </button>

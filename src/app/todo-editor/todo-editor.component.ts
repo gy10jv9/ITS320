@@ -21,11 +21,6 @@ export class TodoEditorComponent {
     constructor(private apiService: ApiService) {};
     
 	message: any;
-    ngOnInit() { 
-        this.apiService.getMessage().subscribe((data) => { 
-            this.message = data;
-        }); 
-    }
 
 	ownerName = new FormControl
 	newtask = new FormControl('', Validators.required)
@@ -33,10 +28,18 @@ export class TodoEditorComponent {
 		name: "",
 		list: []
 	}
+
+    ngOnInit() { 
+        this.apiService.getMessage().subscribe((data) => { 
+            this.message = data;
+        }); 
+    }
+
 	onsave = () => {
 		this.temp_todolist.name = this.ownerName.value?.toString() || "no name"
 		this.temp_todolist.list.push({ description: this.newtask.value?.toString() || " " })
 		console.log(this.temp_todolist)
+		this.newtask.reset()
 	}
 
 	task = new FormControl('', Validators.required)
