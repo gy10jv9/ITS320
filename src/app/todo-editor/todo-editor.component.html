@@ -7,11 +7,11 @@
             <li *ngFor="let i of temp_todolist.list" class="w-full rounded-lg h-10 bg-white shadow-sm"> {{ i.description|json }} </li>
             <div class="flex flex-row items-center gap-x-2">
                 <input type="text" class="form-control my-[16px]" placeholder="Enter Task" [formControl]="newtask"/>
-                <button class="submit-btn btn btn-primary" (click)="onsave()"> Add </button>
+                <button class="submit-btn btn btn-primary" (click)="onadd()" [disabled]="newtask.invalid"> Add </button>
             </div>   
         </ul>
         <div class="flex flex-row items-center absolute bottom-4">
-            <button class="submit-btn btn btn-primary" (click)="onSubmit()" [disabled]="task.invalid">Save Tasks</button>
+            <button class="submit-btn btn btn-primary" [disabled]="istempListEmpty()" (click)="onsave()">Save Tasks</button>
         </div>    
     </div>
 
