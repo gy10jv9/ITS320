@@ -46,7 +46,7 @@ export class TodoEditorComponent {
 		this.newtask.reset()
 	}
 	onsave = () => {
-		console.log(`saving... ${JSON.stringify(this.temp_todolist, null , 4)}`)
+		console.log(`saving... ${JSON.stringify(this.temp_todolist.list, null , 4)}`)
 		// const data: any = {
 		// 	description: this.temp_todolist
 		// }

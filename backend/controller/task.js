@@ -11,6 +11,13 @@ const prisma = require("../lib/prisma")
 // }
 const saveTask = async (data) => {
     console.log(data)
+    const saveTask = await prisma.task.create({
+        data: {
+            description: data.description,
+            owner_id: ""
+        }
+    })
+    return saveTask
 }
 
 const getallTasks = async () => {

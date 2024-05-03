@@ -14,12 +14,12 @@ taskRouter.post("/task/add", async (req, res) => {
     return res.json(newPost)
 })
 
-taskRouter.get("/tasks", async (req, res) => {
-    const gettasks = await getallTasks()
-    res.json(gettasks)
-})
-taskRouter.get('/api/message', (req, res) => { 
-    res.json({ message: 'test' }); 
-});
+// taskRouter.get("/tasks", async (req, res) => {
+//     const gettasks = await getallTasks()
+//     res.json(gettasks)
+// })
+// taskRouter.get('/api/message', (req, res) => { 
+//     res.json({ message: 'test' }); 
+// });
 
 module.exports = taskRouter;
