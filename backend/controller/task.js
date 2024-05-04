@@ -11,13 +11,15 @@ const prisma = require("../lib/prisma")
 // }
 
 const saveTask = async (data) => {
-    console.log(data)
     const saveTask = await prisma.task.create({
         data: {
             description: data.description,
             owner_id: ""
         }
     })
+
+    console.log(`Successfully added: ${JSON.stringify(data, null, 4)}`)
+
     return saveTask
 }
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ApiService } from './services/api.service';
+import { ApiService } from './services/api-todoList.service';
 
 interface type_todoitem {
 	description: string;
@@ -57,5 +57,7 @@ export class TodoEditorComponent {
 
 		this.temp_todolist.list = []
 		this.ownerName.reset()
+
+		console.log(`Current todoList: ${JSON.stringify(this.todoList, null, 4)}`)
 	} 
 }
