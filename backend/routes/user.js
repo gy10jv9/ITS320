@@ -8,8 +8,8 @@ router_owner.get("/owner", async (req, res) => {
 })
 router_owner.post("/owner", async (req, res) => {
     const payload = req.body
-    const newtask = await addowner(payload)
-    return res.json(newtask)
+    const addedOwner = await addowner(payload)
+    return res.json(addedOwner)
 })
 
 module.exports = router_owner
