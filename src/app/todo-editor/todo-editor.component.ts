@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ApiService } from './services/api-todoList.service';
+import { ApiService_TodoList } from './services/api-todoList.service';
 
 interface type_todoitem {
 	description: string;
@@ -18,7 +18,7 @@ interface type_todolist {
 
 
 export class TodoEditorComponent {
-    constructor(private apiService: ApiService) {};
+    constructor(private apiService_todoList: ApiService_TodoList) {};
     
 	todoList: any
 
@@ -30,7 +30,7 @@ export class TodoEditorComponent {
 	}
 
     ngOnInit() { 
-        this.apiService.get_todolist().subscribe((data) => { 
+        this.apiService_todoList.get_todolist().subscribe((data) => { 
             this.todoList = data;
         }); 
     }
@@ -50,7 +50,7 @@ export class TodoEditorComponent {
 			const data: any = {
 				description: i.description
 			}
-			this.apiService.post_todolist(data).subscribe(() => {
+			this.apiService_todoList.post_todolist(data).subscribe(() => {
 				this.todoList.push({ description: data.description })
 			})
 		}

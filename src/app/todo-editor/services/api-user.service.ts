@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({ 
     providedIn: 'root'
 }) 
-export class ApiService_Owner { 
+export class ApiService_User { 
     constructor(private http: HttpClient) { }
 
     // get_todolist() {

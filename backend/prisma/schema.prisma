@@ -5,23 +5,25 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 datasource db {
-	provider = "mongodb"
-	url      = env("DATABASE_URL")
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
-	provider = "prisma-client-js"
+  provider = "prisma-client-js"
+}
+
+model User {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  Task Task[]
 }
 
 model Task {
-    id				String		@id @default(auto()) @map("_id") @db.ObjectId
-    description		String		
-	owner_id		String
-}
-
-model Owner {
-	id		String		@id @default(auto()) @map("_id") @db.ObjectId
-	name	String
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  description String
+  author      User   @relation(references: [id], fields: [id_owner])
+  id_owner    String @db.ObjectId
 }
 
 // "prisma db push" command to create new indexes and regenerate Prisma Client

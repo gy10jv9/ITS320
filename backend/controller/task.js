@@ -1,3 +1,4 @@
+const { connect } = require("http2")
 const prisma = require("../lib/prisma")
 
 // const createTask = async (payload) => {
@@ -14,7 +15,7 @@ const saveTask = async (data) => {
     const saveTask = await prisma.task.create({
         data: {
             description: data.description,
-            owner_id: ""
+            id_owner: data.id_owner
         }
     })
 
@@ -24,8 +25,8 @@ const saveTask = async (data) => {
 }
 
 const getallTasks = async () => {
-    const alltasks = await prisma.task.findMany()
-    return alltasks
+    // const alltasks = await prisma.task.findMany()
+    // return alltasks
 }
 
 module.exports = { getallTasks, saveTask }
