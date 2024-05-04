@@ -20,7 +20,7 @@ interface type_todolist {
 export class TodoEditorComponent {
     constructor(private apiService: ApiService) {};
     
-	message: any;
+	todoList: any
 
 	ownerName = new FormControl
 	newtask = new FormControl('', Validators.required)
@@ -30,9 +30,9 @@ export class TodoEditorComponent {
 	}
 
     ngOnInit() { 
-        // this.apiService.getMessage().subscribe((data) => { 
-        //     this.message = data;
-        // }); 
+        this.apiService.get_todolist().subscribe((data) => { 
+            this.todoList = data;
+        }); 
     }
 
 	istempListEmpty = () => { // ga retun true kung wala unod and list para ma disable ang save button
@@ -46,14 +46,22 @@ export class TodoEditorComponent {
 		this.newtask.reset()
 	}
 	onsave = () => { // mag save na sa database gd
-		console.log(`saving... ${JSON.stringify(this.temp_todolist.list[0].description, null , 4)}`)
-		const data: any = {
-			description: this.temp_todolist.list[0].description
+		for(let i of this.temp_todolist.list) {
+			const data: any = {
+				description: i.description
+			}
+			this.apiService.post_todolist(data).subscribe(() => {
+				this.todoList({ description: data.description })
+			})
 		}
-		this.apiService.post_todolist(data).subscribe(() => {
-			// this.message.push({ description: data.description })
-			// this.task.reset()
-		})
+
+		// const data: any = {
+		// 	description: this.temp_todolist.list[0].description
+		// }
+		// this.apiService.post_todolist(data).subscribe(() => {
+		// 	// this.message.push({ description: data.description })
+		// 	// this.task.reset()
+		// })
 	} 
 
 	// task = new FormControl('', Validators.required)

@@ -9,6 +9,7 @@ const prisma = require("../lib/prisma")
 //     })
 //     return newtask
 // }
+
 const saveTask = async (data) => {
     console.log(data)
     const saveTask = await prisma.task.create({
@@ -21,8 +22,8 @@ const saveTask = async (data) => {
 }
 
 const getallTasks = async () => {
-    const gettasks = await prisma.task.findMany()
-    return gettasks
+    const alltasks = await prisma.task.findMany()
+    return alltasks
 }
 
 module.exports = { getallTasks, saveTask }
