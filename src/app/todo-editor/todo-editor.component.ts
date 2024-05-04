@@ -51,27 +51,11 @@ export class TodoEditorComponent {
 				description: i.description
 			}
 			this.apiService.post_todolist(data).subscribe(() => {
-				this.todoList({ description: data.description })
+				this.todoList.push({ description: data.description })
 			})
 		}
 
-		// const data: any = {
-		// 	description: this.temp_todolist.list[0].description
-		// }
-		// this.apiService.post_todolist(data).subscribe(() => {
-		// 	// this.message.push({ description: data.description })
-		// 	// this.task.reset()
-		// })
+		this.temp_todolist.list = []
+		this.ownerName.reset()
 	} 
-
-	// task = new FormControl('', Validators.required)
-	// onSubmit = () => {
-	// 	const data: any = {
-	// 		description: this.task.value?.toString() || ''
-	// 	}
-	// 	this.apiService.postMessage(data).subscribe(() => {
-	// 		this.message.push({ description: data.description })
-	// 		this.task.reset()
-	// 	})
-	// }
 }
