@@ -1,6 +1,7 @@
 const express = require('express'); 
 const { PrismaClient } = require('@prisma/client');
 const taskRouter = require('./routes/task');
+const router_owner = require('./routes/user')
 
 const prisma = new PrismaClient();
 const app = express(); 
@@ -14,6 +15,7 @@ app.use((req, res, next) => {
 });
 app.use(express.json());
 app.use(taskRouter)
+app.use(router_owner)
 
 const port = process.env.PORT || 3000
 app.listen(port, () => { 
