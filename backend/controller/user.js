@@ -7,8 +7,6 @@ const addowner = async (data) => {
         }
     })
 
-    console.log(`Successfully added: ${JSON.stringify(data, null, 4)}`)
-
     return addowner
 }
 

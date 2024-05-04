@@ -4,7 +4,7 @@ const saveTask = async (data) => {
     const saveTask = await prisma.task.create({
         data: {
             description: data.description,
-            id_owner: data.id_owner
+            user: data.user
         }
     })
 
@@ -14,11 +14,7 @@ const saveTask = async (data) => {
 }
 
 const getallTasks = async () => {
-    const alltasks = await prisma.task.findMany({
-        include: {
-            author: true
-        },
-    })
+    const alltasks = await prisma.task.findMany()
     return alltasks
 }
 

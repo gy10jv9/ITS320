@@ -9,6 +9,8 @@ router_owner.get("/owner", async (req, res) => {
 router_owner.post("/owner", async (req, res) => {
     const payload = req.body
     const addedOwner = await addowner(payload)
+
+    console.log(`Successfully added: ${JSON.stringify(addedOwner, null, 4)}`)
     return res.json(addedOwner)
 })
 

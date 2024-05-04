@@ -19,7 +19,7 @@
     <div class="w-[380px] h-[88%] rounded-xl bg-slate-100 shadow-xl py-8 px-4 flex flex-col items-center relative pb-24">
         <h1> All Tasks </h1>
         <ul>
-            <li *ngFor="let task of todoList" class="w-full rounded-lg h-10 bg-white shadow-sm"> {{ task.description |json }} </li>
+            <li *ngFor="let task of todoList" class="w-full rounded-lg h-10 bg-white shadow-sm">Owner: {{ task.user |json }}; Task{{ task.description |json }}  </li>
         </ul>
     </div>
 </div>

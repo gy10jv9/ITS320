@@ -9,7 +9,7 @@ export class ApiService_TodoList {
 
     get_todolist() {
         return this.http.get(
-            'http://localhost:3000/tast'
+            'http://localhost:3000/task'
         )
     }
     post_todolist = (data: any) => {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ApiService_TodoList } from './services/api-todoList.service';
+import { ApiService_User } from './services/api-user.service';
 
 interface type_todoitem {
 	description: string;
@@ -18,7 +19,10 @@ interface type_todolist {
 
 
 export class TodoEditorComponent {
-    constructor(private apiService_todoList: ApiService_TodoList) {};
+    constructor(
+		private apiService_todoList: ApiService_TodoList,
+		private apiService_user: ApiService_User
+	) {};
     
 	todoList: any
 
@@ -42,16 +46,35 @@ export class TodoEditorComponent {
 	onadd = () => { // add sa temporary list lang anay
 		this.temp_todolist.name = this.ownerName.value?.toString() || "no name"
 		this.temp_todolist.list.push({ description: this.newtask.value?.toString() || " " })
+		
 		console.log(this.temp_todolist)
 		this.newtask.reset()
 	}
-	onsave = () => { // mag save na sa database gd
+
+	id_owner: any
+
+	onsave = async () => { // mag save na sa database gd
+		let data: any = {
+			name: this.temp_todolist.name
+		}
+
+		this.apiService_user.post_user(data).subscribe((response: any) => {
+			this.id_owner = response.id
+			console.log(this.id_owner)
+		})
+
 		for(let i of this.temp_todolist.list) {
-			const data: any = {
-				description: i.description
+			var data1: any = {
+				description: i.description,
+				user: this.temp_todolist.name
 			}
-			this.apiService_todoList.post_todolist(data).subscribe(() => {
-				this.todoList.push({ description: data.description })
+			console.log(data1)
+
+			this.apiService_todoList.post_todolist(data1).subscribe(() => {
+				this.todoList.push({ 
+					description: data1.description,
+					user: data1.user
+				})
 			})
 		}
 
