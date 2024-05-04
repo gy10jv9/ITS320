@@ -30,30 +30,30 @@ export class TodoEditorComponent {
 	}
 
     ngOnInit() { 
-        this.apiService.getMessage().subscribe((data) => { 
-            this.message = data;
-        }); 
+        // this.apiService.getMessage().subscribe((data) => { 
+        //     this.message = data;
+        // }); 
     }
 
 	istempListEmpty = () => { // ga retun true kung wala unod and list para ma disable ang save button
 		return this.temp_todolist.list.length === 0
 	}
 
-	onadd = () => {
+	onadd = () => { // add sa temporary list lang anay
 		this.temp_todolist.name = this.ownerName.value?.toString() || "no name"
 		this.temp_todolist.list.push({ description: this.newtask.value?.toString() || " " })
 		console.log(this.temp_todolist)
 		this.newtask.reset()
 	}
-	onsave = () => {
-		console.log(`saving... ${JSON.stringify(this.temp_todolist.list, null , 4)}`)
-		// const data: any = {
-		// 	description: this.temp_todolist
-		// }
-		// this.apiService.postMessage(data).subscribe(() => {
-		// 	this.message.push({ description: data.description })
-		// 	this.task.reset()
-		// })
+	onsave = () => { // mag save na sa database gd
+		console.log(`saving... ${JSON.stringify(this.temp_todolist.list[0].description, null , 4)}`)
+		const data: any = {
+			description: this.temp_todolist.list[0].description
+		}
+		this.apiService.post_todolist(data).subscribe(() => {
+			// this.message.push({ description: data.description })
+			// this.task.reset()
+		})
 	} 
 
 	// task = new FormControl('', Validators.required)

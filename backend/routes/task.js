@@ -10,8 +10,8 @@ const taskRouter = express.Router();
 
 taskRouter.post("/task/add", async (req, res) => {
     const payload = req.body
-    const newPost = await saveTask(payload)
-    return res.json(newPost)
+    const newtask = await saveTask(payload)
+    return res.json(newtask)
 })
 
 // taskRouter.get("/tasks", async (req, res) => {
